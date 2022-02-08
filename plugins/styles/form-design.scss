@@ -1,0 +1,508 @@
+$border-color: #dcdfe6;
+$primary-color: #409eff;
+$success-color: #67c23a;
+$danger-color: #f56c6c;
+$font-color-1: #303133;
+$font-color-2: #606266;
+$font-color-3: #909399;
+$bg-color: #fafafa;
+$primary-hover-bg-color: #ecf5ff;
+$success-hover-bg-color: #e1f3d8;
+$success-bg-color: #f0f9eb;
+$border-color-1: #dcdfe6;
+$border-color-2: #e4e7ed;
+$border-color-3: #ebeef5;
+
+.container {
+  &_header {
+    background-color: #409eff;
+    text-align: center;
+    color: #fff;
+    line-height: 60px;
+    font-size: 22px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &_aside-left {
+    border-right: 2px solid #e6e6e6;
+    height: calc(100vh - 70px);
+    padding: 0 15px;
+
+    ul {
+      padding: 0px;
+      list-style: none;
+      display: flex;
+      margin-bottom: 0;
+      flex-wrap: wrap;
+
+      li {
+        border-radius: 0;
+        border: 0;
+        box-shadow: 1px 0 0 0 $border-color, 0 1px 0 0 $border-color,
+          1px 1px 0 0 $border-color, 1px 0 0 0 $border-color inset,
+          0 1px 0 0 $border-color inset;
+        padding: 8px 12px;
+        transition: all 0.3s;
+        width: 120px;
+        margin: 5px 5px;
+        height: 36px;
+        line-height: 20px;
+        cursor: move;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        transition: all 0.3s;
+
+        &:hover {
+          color: $primary-color;
+          border: 1px solid $primary-color;
+          position: relative;
+          z-index: 1;
+          box-shadow: 0 2px 6px $primary-color;
+        }
+      }
+    }
+  }
+
+  &_main {
+    padding: 10px 20px;
+
+    &_header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 20px;
+      border-bottom: 1px solid $border-color;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+
+      &_icon {
+        color: $font-color-2;
+        font-size: 20px;
+        padding: 4px;
+        border-radius: 5px;
+        margin-right: 5px;
+        transition: .3s all;
+        cursor: pointer;
+      }
+      &_icon:hover, .icon-active {
+        color: $primary-color;
+        background-color: $border-color-3;
+      }
+    }
+
+    &_body {
+      position: relative;
+      width: calc(100% - 16px);
+      height: calc(100vh - 136px);
+      margin: 8px;
+      background-color: $bg-color;
+      overflow: auto;
+      box-shadow: 0 4px 12px #ebedf0;
+
+      .no-list {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18px;
+        color: $font-color-3;
+      }
+
+      &_form {
+        width: 100%;
+        height: 100%;
+
+        .draggable-box {
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+
+          .list-main {
+            min-height: 100%;
+            position: relative;
+            padding: 5px 0px;
+          }
+          .layout-drag {
+            min-height: inherit;
+          }
+        }
+      }
+
+      // 基础字段样式
+      .itemPage {
+        position: relative;
+        box-sizing: border-box;
+        padding: 20px 8px;
+        overflow: hidden;
+        transition: all 0.3s;
+        min-height: 36px;
+
+        &:hover {
+          background: $primary-hover-bg-color;
+        }
+
+        &::before {
+          content: "";
+          height: 5px;
+          width: 100%;
+          background: $primary-color;
+          position: absolute;
+          top: 0;
+          right: -100%;
+          transition: all 0.3s;
+        }
+
+        &.active {
+          &::before {
+            right: 0;
+          }
+
+          background: $primary-hover-bg-color;
+          outline-offset: 0;
+        }
+
+        &_key {
+          position: absolute;
+          bottom: 3px;
+          right: 10px;
+          font-size: 14px;
+          z-index: 3;
+          color: $primary-color;
+        }
+
+        &_operation {
+          position: absolute;
+          right: 0px;
+          top: 5px;
+          background-color: $primary-color;
+          color: #fff;
+          width: 60px;
+          height: 25px;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding: 0 5px 5px;
+          border-radius: 0px 0px 0px 10px;
+          z-index: 3;
+
+          &_active {
+            visibility: visible;
+          }
+          &_none {
+            visibility: hidden;
+          }
+          &_icon {
+            padding: 0 5px;
+            cursor: pointer;
+          }
+        }
+      }
+      .form-item {
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 2;
+        }
+      }
+
+      // 布局样式
+      .layoutPage {
+        background-color: $success-bg-color;
+        &:hover {
+          background-color: $success-hover-bg-color;
+        }
+        &::before {
+          background: $success-color;
+        }
+        &.active {
+          background: $success-hover-bg-color;
+        }
+        &_operation {
+          background-color: $success-color;
+        }
+      }
+
+      // 栅格样式
+      .gridPage {
+        &_cell {
+          width: 100%;
+          min-height: 50px;
+          background-color: #fff;
+          border: 1px $border-color-1 dashed;
+          padding: 0 5px;
+        }
+      }
+      // 动态表格
+      .dynamicTab {
+        width: 100%;
+        overflow: auto;
+        min-height: 50px;
+        border: 1px #dcdfe6 dashed;
+        background-color: #fff;
+        .dynamicTab_drag {
+          width: 100%;
+        }
+        .dynamicTab_tran {
+          display: inline-block;
+          min-height: 50px;
+          width: 100%;
+          overflow: auto;
+          white-space: nowrap;
+        }
+        .inline_tran {
+          display: inline-block;
+          min-height: 50px;
+          width: 100%;
+          overflow: auto;
+        }
+        .dynamicTab_layout {
+          min-width: 180px;
+          display: inline-block;
+          vertical-align: top;
+        }
+        .inline_drag {
+          display: inline-block;
+          min-height: 50px;
+          width: 100%;
+          overflow: auto;
+        }
+      }
+      // 标签页
+      .tabs_drag {
+        margin-top: 10px;
+        min-height: 60px;
+        background-color: #fff;
+        border: 1px #dcdfe6 dashed;
+      }
+    }
+  }
+
+  &_aside-right {
+    border-left: 2px solid #e6e6e6;
+    height: calc(100vh - 70px);
+    .formConfig {
+      padding: 20px 15px 0;
+    }
+  }
+  &_aside_content {
+    overflow: hidden;
+    .el-scrollbar__wrap {
+      overflow-x: hidden;
+    }
+    &_config {
+      height: calc(100vh - 133px);
+      overflow: auto;
+    }
+  }
+}
+
+.moving {
+  // 拖放移动中
+  min-height: 35px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 3px 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    height: 5px;
+    width: 100%;
+    background: $primary-color;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+.movingTab {
+  // 拖放移动中 动态表格内
+  display: inline-block;
+  width: 200px;
+  min-height: 35px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 3px 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    height: 5px;
+    width: 100%;
+    background: $primary-color;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+// 列表动画
+.list-fade-enter-active {
+  transition: all 0.3s;
+}
+
+.list-fade-leave-active {
+  transition: all 0.3s;
+}
+
+.list-fade-enter,
+.list-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-250px);
+  position: absolute;
+}
+
+.icon-delete-solid {
+  font-size: 16px;
+  color: #f56c6c;
+  margin-left: 10px;
+  margin-top: 7px;
+  border: 1px solid #f56c6c;
+  padding: 5px;
+  border-radius: 50%;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+.icon-delete-solid:hover {
+  background-color: #f56c6c;
+  color: #fff;
+}
+.icon-delete-solid:active {
+  background-color: #fff;
+  color: #f56c6c;
+}
+
+// vue-codemirror-lite 代码显示编辑器样式修改
+.jsonClass {
+  .el-dialog__header {
+    border-bottom: 1px solid #dcdfe6;
+  }
+
+  .el-dialog__body {
+    padding: 10px 10px 20px;
+  }
+}
+
+.jsonPage {
+  height: 500px;
+  .CodeMirror-wrap {
+    height: 500px;
+    background: #fffae8;
+  }
+  &_footer {
+    margin-top: 15px;
+    text-align: center;
+  }
+}
+
+.hiddenClass {
+  background-color: #fef0f0 !important;
+  opacity: 0.6;
+}
+.icon-rank {
+  transition: 0.3s all;
+  cursor: move;
+}
+.icon-rank:hover {
+  color: #409eff;
+}
+
+.option_input {
+  width: 85px !important;
+  margin-left: 10px;
+}
+
+.table-layout {
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-layout tr {
+  transition: all 0.3s;
+  border-collapse: collapse;
+}
+.tabLayout {
+  min-height: 50px !important;
+  border: 1px dashed #ccc;
+  background: #fff;
+}
+
+.table-layout tr td {
+  min-width: 50px;
+  min-height: 50px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  padding: 12px 12px;
+  // border: solid #606266;
+  border-collapse: collapse;
+  vertical-align: middle; /* 该属性暂不设为自定义，如：top\middle\bottom */
+}
+
+// 动态表格右键框样式
+.right-menu {
+  width: 150px;
+  background: #fff;
+  border: 1px solid #ebeef5;
+  position: fixed;
+  transition: all 0s;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  z-index: 999;
+}
+
+.right-menu ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.right-menu li {
+  cursor: pointer;
+  user-select: none;
+  padding: 0 15px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #606266;
+  transition: 0.2s all;
+}
+
+.right-menu ul li:hover {
+  background-color: #e8f4ff;
+  color: #46a6ff;
+}
+
+.right-menu ul li i {
+  margin-right: 10px;
+}
+
+.right-menu ul .divider {
+  margin: 5px 0;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.showFormLayouPage {
+  margin-bottom: 15px;
+  .inline-layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
